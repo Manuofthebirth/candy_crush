@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       const notAllowed = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55]
-      if(notAllowed.includes(i)) continue // skip
+      if(notAllowed.includes(i)) continue // skip ; validate only if same row
 
       if (rowOfThree.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
         score += 3;
@@ -187,9 +187,50 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
   checkColumnForFour()
 
+  // row of five
+  function checkRowForFive() {
+    for (i = 0; i < 59; i++) { // can't check for #66 or #67; respect limit at #60
+      let rowOfFive = [i, i+1, i+2, i+3, i+4];
+      let decidedCandy = squares[i].style.backgroundImage;
+      const isBlank = squares[i].style.backgroundImage === '';
+
+      const notAllowed = [4, 5, 6, 7, 12, 13, 14, 15, 20, 21, 22, 23, 28, 29, 30, 31, 36, 37, 38, 39, 44, 45, 46, 47, 52, 53, 54, 55]
+      if(notAllowed.includes(i)) continue // skip
+
+      if (rowOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
+        score += 4;
+        scoreDisplay.innerHTML = score;
+        rowOfFive.forEach(index => {
+          squares[index].style.backgroundImage = '';
+        })
+      }
+    }
+  }
+  checkRowForFive()
+
+  // column of five
+  function checkColumnForFive() {
+    for (i = 0; i < 31; i++) { // can't check for #71 or #79; respect limit at #39
+      let columnOfFive = [i, i+width, i+width*2, i+width*3, i+width*4];
+      let decidedCandy = squares[i].style.backgroundImage;
+      const isBlank = squares[i].style.backgroundImage === '';
+
+      if (columnOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
+        score += 4;
+        scoreDisplay.innerHTML = score;
+        columnOfFive.forEach(index => {
+          squares[index].style.backgroundImage = '';
+        })
+      }
+    }
+  }
+  checkColumnForFive()
+
   // check for functions after each 100 miliseconds
   window.setInterval(function(){
     moveDown()
+    checkRowForFive()
+    checkColumnForFive()
     checkRowForFour()
     checkColumnForFour()
     checkRowForThree()

@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () =>{
   const grid = document.querySelector('.game-grid');
   const scoreDisplay = document.getElementById('score');
+  const movesDisplay = document.getElementById('moves');
   const width = 8;
   const squares = [];
   let score = 0;
+  let moves = 0;
 
   const candyColors = [
     'url(img/red.png)',
@@ -76,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     if (candyIdBeingReplaced && allowedMove) { // if it exists and is an allowed move
       candyIdBeingReplaced = null; // clear id value
+      moves += 1;
+      movesDisplay.innerHTML = moves;
     } else if (candyIdBeingReplaced && !allowedMove) {
       // remains the same
       squares[candyIdBeingReplaced].style.backgroundImage = candyBeingReplaced;

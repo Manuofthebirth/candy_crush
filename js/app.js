@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   const grid = document.querySelector('.game-grid');
   const width = 8;
   const squares = [];
+  let score = 0;
 
   const candyColors = [
     'red',
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   let candyIdBeingReplaced
 
   squares.forEach(square => square.addEventListener('dragstart', dragStart));
-  squares.forEach(square => square.addEventListener('dragsend', dragEnd));
+  squares.forEach(square => square.addEventListener('dragend', dragEnd));
   squares.forEach(square => square.addEventListener('dragover', dragOver));
   squares.forEach(square => square.addEventListener('dragenter', dragEnter));
   squares.forEach(square => square.addEventListener('dragleave', dragLeave));
@@ -89,6 +90,47 @@ document.addEventListener('DOMContentLoaded', () =>{
     squares[candyIdBeingDragged].style.backgroundColor = candyBeingReplaced; // replace dragged candy
   }
 
+  // Matching candies (up to 5)
+  // row of three
+  function checkRowForThree() {
+    for (i = 0; i < 61; i++) { // can't check for #64 or #65; respect limit at #61
+      let rowOfThree = [i, i+1, i+2];
+      let decidedCandy = squares[i].style.backgroundColor;
+      const isBlank = squares[i].style.backgroundColor === '';
 
+      const notAllowed = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55]
+      if(notAllowed.includes(i)) continue // skip
+
+      if (rowOfThree.every(index => squares[index].style.backgroundColor === decidedCandy && !isBlank)) {
+        score += 3;
+        rowOfThree.forEach(index => {
+          squares[index].style.backgroundColor = '';
+        })
+      }
+    }
+  }
+  checkRowForThree()
+
+  function checkColumnForThree() {
+    for (i = 0; i < 47; i++) { // can't check for #64 or #65; respect limit at #47
+      let columnOfThree = [i, i+width, i+width*2];
+      let decidedCandy = squares[i].style.backgroundColor;
+      const isBlank = squares[i].style.backgroundColor === '';
+
+      if (columnOfThree.every(index => squares[index].style.backgroundColor === decidedCandy && !isBlank)) {
+        score += 3;
+        columnOfThree.forEach(index => {
+          squares[index].style.backgroundColor = '';
+        })
+      }
+    }
+  }
+  checkColumnForThree()
+
+  // check for functions after each 100 miliseconds
+  window.setInterval(function(){
+    checkRowForThree()
+    checkColumnForThree()
+  }, 100)
 })
 

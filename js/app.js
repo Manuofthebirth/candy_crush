@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
   checkRowForThree()
 
+  // column of three
   function checkColumnForThree() {
     for (i = 0; i < 47; i++) { // can't check for #64 or #65; respect limit at #47
       let columnOfThree = [i, i+width, i+width*2];
@@ -127,8 +128,47 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
   checkColumnForThree()
 
+  // row of four
+  function checkRowForFour() {
+    for (i = 0; i < 60; i++) { // can't check for #65 or #66; respect limit at #60
+      let rowOfFour = [i, i+1, i+2, i+3];
+      let decidedCandy = squares[i].style.backgroundColor;
+      const isBlank = squares[i].style.backgroundColor === '';
+
+      const notAllowed = [5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53, 54, 55]
+      if(notAllowed.includes(i)) continue // skip
+
+      if (rowOfFour.every(index => squares[index].style.backgroundColor === decidedCandy && !isBlank)) {
+        score += 4;
+        rowOfFour.forEach(index => {
+          squares[index].style.backgroundColor = '';
+        })
+      }
+    }
+  }
+  checkRowForFour()
+
+  // column of four
+  function checkColumnForFour() {
+    for (i = 0; i < 39; i++) { // can't check for #71 or #79; respect limit at #39
+      let columnOfFour = [i, i+width, i+width*2, i+width*3];
+      let decidedCandy = squares[i].style.backgroundColor;
+      const isBlank = squares[i].style.backgroundColor === '';
+
+      if (columnOfFour.every(index => squares[index].style.backgroundColor === decidedCandy && !isBlank)) {
+        score += 4;
+        columnOfFour.forEach(index => {
+          squares[index].style.backgroundColor = '';
+        })
+      }
+    }
+  }
+  checkColumnForFour()
+
   // check for functions after each 100 miliseconds
   window.setInterval(function(){
+    checkRowForFour()
+    checkColumnForFour()
     checkRowForThree()
     checkColumnForThree()
   }, 100)

@@ -63,8 +63,24 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   function dragEnd () {
     console.log(this.id, 'dragend');
-  }
+    // Moves allowed
+    let allowedMoves = [
+      candyIdBeingDragged - 1, // left side
+      candyIdBeingDragged - width, // below
+      candyIdBeingDragged + 1, // above
+      candyIdBeingDragged + width // above
+    ] 
+    let allowedMove = allowedMoves.includes(candyIdBeingReplaced);
 
+    if (candyIdBeingReplaced && allowedMove) { // if it exists and is an allowed move
+      candyIdBeingReplaced = null; // clear id value
+    } else if (candyIdBeingReplaced && !allowedMove) {
+      // remains the same
+      squares[candyIdBeingReplaced].style.backgroundColor = candyBeingReplaced;
+      squares[candyIdBeingDragged].style.backgroundColor = candyBeingDragged;
+    } else squares[candyIdBeingDragged].style.backgroundColor = candyBeingDragged;
+  }
+  
   function dragDrop () {
     console.log(this.id, 'dragdrop');
     candyBeingReplaced = this.style.backgroundColor;

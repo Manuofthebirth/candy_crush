@@ -26,5 +26,39 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
   }
   createBoard()
+
+  // Drag the squares (pc) ; inbuilt drag events
+  squares.forEach(square => square.addEventListener('dragstart', dragStart));
+  squares.forEach(square => square.addEventListener('dragsend', dragEnd));
+  squares.forEach(square => square.addEventListener('dragover', dragOver));
+  squares.forEach(square => square.addEventListener('dragenter', dragEnter));
+  squares.forEach(square => square.addEventListener('dragleave', dragLeave));
+  squares.forEach(square => square.addEventListener('dragdrop', dragDrop));
+
+  function dragStart() {
+    console.log(this.id, 'dragstart')
+  }
+
+  function dragOver () {
+    console.log(this.id, 'dragover')
+  }
+
+  function dragEnter () {
+    console.log(this.id, 'dragenter')
+  }
+
+  function dragLeave () {
+    console.log(this.id, 'dragleave')
+  }
+
+  function dragEnd () {
+    console.log(this.id, 'dragend')
+  }
+
+  function dragDrop () {
+    console.log(this.id, 'dragdrop')
+  }
+
+
 })
 

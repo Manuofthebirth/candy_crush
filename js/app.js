@@ -28,35 +28,49 @@ document.addEventListener('DOMContentLoaded', () =>{
   createBoard()
 
   // Drag the squares (pc) ; inbuilt drag events
+  let candyBeingDragged
+  let candyBeingReplaced
+  let candyIdBeingDragged
+  let candyIdBeingReplaced
+
   squares.forEach(square => square.addEventListener('dragstart', dragStart));
   squares.forEach(square => square.addEventListener('dragsend', dragEnd));
   squares.forEach(square => square.addEventListener('dragover', dragOver));
   squares.forEach(square => square.addEventListener('dragenter', dragEnter));
   squares.forEach(square => square.addEventListener('dragleave', dragLeave));
-  squares.forEach(square => square.addEventListener('dragdrop', dragDrop));
+  squares.forEach(square => square.addEventListener('drop', dragDrop));
 
   function dragStart() {
-    console.log(this.id, 'dragstart')
+    candyBeingDragged = this.style.backgroundColor;
+    candyIdBeingDragged = parseInt(this.id); // needs to be a number
+    console.log(candyBeingDragged); // identify candy being dragged
+    console.log(this.id, 'dragstart');
   }
 
-  function dragOver () {
-    console.log(this.id, 'dragover')
+  function dragOver (event) {
+    event.preventDefault();
+    console.log(this.id, 'dragover');
   }
 
-  function dragEnter () {
-    console.log(this.id, 'dragenter')
+  function dragEnter (event) {
+    event.preventDefault();
+    console.log(this.id, 'dragenter');
   }
 
   function dragLeave () {
-    console.log(this.id, 'dragleave')
+    console.log(this.id, 'dragleave');
   }
 
   function dragEnd () {
-    console.log(this.id, 'dragend')
+    console.log(this.id, 'dragend');
   }
 
   function dragDrop () {
-    console.log(this.id, 'dragdrop')
+    console.log(this.id, 'dragdrop');
+    candyBeingReplaced = this.style.backgroundColor;
+    candyIdBeingReplaced = parseInt(this.id); // needs to be a number 
+    this.style.backgroundColor = candyBeingDragged; // replace for dragged candy
+    squares[candyIdBeingDragged].style.backgroundColor = candyBeingReplaced; // replace dragged candy
   }
 
 

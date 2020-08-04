@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () =>{
   const grid = document.querySelector('.game-grid');
   const scoreDisplay = document.getElementById('score');
   const movesDisplay = document.getElementById('moves');
+  const startBtn = document.querySelector('.start-btn');
+  const timerDisplay = document.getElementById('timer');
   const width = 8;
   const squares = [];
   let score = 0;
@@ -30,6 +32,35 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
   }
   createBoard()
+  
+  // countdown
+  let timeLeft = 180;
+
+  function countDown() {
+    if (timeLeft <= 0) {
+      clearInterval(timeLeft = 0)
+      timerDisplay.innerHTML = 'Game Over';
+    } else if (timer != null) {
+      timeLeft -= 1;
+      timerDisplay.innerHTML = timeLeft;
+    }
+  }
+  
+  // start/pause button
+  let timer;
+
+  startBtn.addEventListener('click', () => {
+    // pause if timer not null
+    if(timer) {
+      clearInterval(timer);
+      timer = null;
+      startBtn.innerHTML = 'Resume';
+    } else {
+      clearInterval(timer);
+      timer = setInterval(countDown, 1000);
+      startBtn.innerHTML = 'Pause';
+    }
+  })
 
   // Drag the squares (pc) ; inbuilt drag events
   let candyBeingDragged

@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       timerDisplay.innerHTML = 'Game Over';
     } else if (timer != null) {
       timeLeft -= 1;
-      timerDisplay.innerHTML = new Date(timeLeft * 1000).toISOString().substr(14, 5);
+      timerDisplay.innerHTML = new Date(timeLeft * 1000).toISOString().substr(14, 5); // converts seconds to mm:ss format
     }
   }
   
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   let candyBeingReplaced
   let candyIdBeingDragged
   let candyIdBeingReplaced
-
+  
   squares.forEach(square => square.addEventListener('dragstart', dragStart));
   squares.forEach(square => square.addEventListener('dragend', dragEnd));
   squares.forEach(square => square.addEventListener('dragover', dragOver));
@@ -155,8 +155,10 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip ; validate only if same row
 
       if (rowOfThree.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 3;
-        scoreDisplay.innerHTML = score;
+        if (timer != null) {
+          score += 3;
+          scoreDisplay.innerHTML = score;
+        }
         rowOfThree.forEach(index => {
           squares[index].style.backgroundImage = '';
         })
@@ -173,8 +175,10 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfThree.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 3;
-        scoreDisplay.innerHTML = score;
+        if (timer != null) {
+          score += 3;
+          scoreDisplay.innerHTML = score;
+        }
         columnOfThree.forEach(index => {
           squares[index].style.backgroundImage = '';
         })
@@ -194,8 +198,10 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip
 
       if (rowOfFour.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 4;
-        scoreDisplay.innerHTML = score;
+        if (timer != null) {
+          score += 4;
+          scoreDisplay.innerHTML = score;
+        }
         rowOfFour.forEach(index => {
           squares[index].style.backgroundImage = '';
         })
@@ -212,8 +218,10 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfFour.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 4;
-        scoreDisplay.innerHTML = score;
+        if (timer != null) {
+          score += 4;
+          scoreDisplay.innerHTML = score;
+        }
         columnOfFour.forEach(index => {
           squares[index].style.backgroundImage = '';
         })
@@ -233,8 +241,10 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip
 
       if (rowOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 5;
-        scoreDisplay.innerHTML = score;
+        if (timer != null) {
+          score += 5;
+          scoreDisplay.innerHTML = score;
+        }
         rowOfFive.forEach(index => {
           squares[index].style.backgroundImage = '';
         })
@@ -251,8 +261,10 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 5;
-        scoreDisplay.innerHTML = score;
+        if (timer != null) {
+          score += 5;
+          scoreDisplay.innerHTML = score;
+        }
         columnOfFive.forEach(index => {
           squares[index].style.backgroundImage = '';
         })

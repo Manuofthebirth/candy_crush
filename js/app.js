@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     if (timeLeft <= 0) {
       clearInterval(timeLeft = 0)
       timerDisplay.innerHTML = 'Game Over';
-    } else if (timer != null) {
+    } else if (timer) {
       timeLeft -= 1;
       timerDisplay.innerHTML = new Date(timeLeft * 1000).toISOString().substr(14, 5); // converts seconds to mm:ss format
     }
@@ -76,54 +76,66 @@ document.addEventListener('DOMContentLoaded', () =>{
   squares.forEach(square => square.addEventListener('drop', dragDrop));
 
   function dragStart() {
-    candyBeingDragged = this.style.backgroundImage;
-    candyIdBeingDragged = parseInt(this.id); // needs to be a number
-    console.log(candyBeingDragged); // identify candy being dragged
-    console.log(this.id, 'dragstart');
+    if (timer) {
+      candyBeingDragged = this.style.backgroundImage;
+      candyIdBeingDragged = parseInt(this.id); // needs to be a number
+      console.log(candyBeingDragged); // identify candy being dragged
+      console.log(this.id, 'dragstart');
+    }
   }
 
   function dragOver (event) {
     event.preventDefault();
-    console.log(this.id, 'dragover');
+    if (timer) {
+      console.log(this.id, 'dragover');
+    }
   }
 
   function dragEnter (event) {
     event.preventDefault();
-    console.log(this.id, 'dragenter');
+    if (timer) {
+      console.log(this.id, 'dragenter');
+    }
   }
 
   function dragLeave () {
-    console.log(this.id, 'dragleave');
+    if (timer) {
+      console.log(this.id, 'dragleave');
+    }
   }
 
   function dragEnd () {
-    console.log(this.id, 'dragend');
-    // Moves allowed
-    let allowedMoves = [
-      candyIdBeingDragged - 1, // left side
-      candyIdBeingDragged - width, // below
-      candyIdBeingDragged + 1, // above
-      candyIdBeingDragged + width // above
-    ] 
-    let allowedMove = allowedMoves.includes(candyIdBeingReplaced);
-
-    if (candyIdBeingReplaced && allowedMove) { // if it exists and is an allowed move
-      candyIdBeingReplaced = null; // clear id value
-      moves += 1;
-      movesDisplay.innerHTML = moves;
-    } else if (candyIdBeingReplaced && !allowedMove) {
-      // remains the same
-      squares[candyIdBeingReplaced].style.backgroundImage = candyBeingReplaced;
-      squares[candyIdBeingDragged].style.backgroundImage = candyBeingDragged;
-    } else squares[candyIdBeingDragged].style.backgroundImage = candyBeingDragged;
+    if (timer) {
+      console.log(this.id, 'dragend');
+      // Moves allowed
+      let allowedMoves = [
+        candyIdBeingDragged - 1, // left side
+        candyIdBeingDragged - width, // below
+        candyIdBeingDragged + 1, // above
+        candyIdBeingDragged + width // above
+      ] 
+      let allowedMove = allowedMoves.includes(candyIdBeingReplaced);
+  
+      if (candyIdBeingReplaced && allowedMove) { // if it exists and is an allowed move
+        candyIdBeingReplaced = null; // clear id value
+        moves += 1;
+        movesDisplay.innerHTML = moves;
+      } else if (candyIdBeingReplaced && !allowedMove) {
+        // remains the same
+        squares[candyIdBeingReplaced].style.backgroundImage = candyBeingReplaced;
+        squares[candyIdBeingDragged].style.backgroundImage = candyBeingDragged;
+      } else squares[candyIdBeingDragged].style.backgroundImage = candyBeingDragged;
+    }
   }
   
   function dragDrop () {
-    console.log(this.id, 'dragdrop');
-    candyBeingReplaced = this.style.backgroundImage;
-    candyIdBeingReplaced = parseInt(this.id); // needs to be a number 
-    this.style.backgroundImage = candyBeingDragged; // replace for dragged candy
-    squares[candyIdBeingDragged].style.backgroundImage = candyBeingReplaced; // replace dragged candy
+    if (timer) {
+      console.log(this.id, 'dragdrop');
+      candyBeingReplaced = this.style.backgroundImage;
+      candyIdBeingReplaced = parseInt(this.id); // needs to be a number 
+      this.style.backgroundImage = candyBeingDragged; // replace for dragged candy
+      squares[candyIdBeingDragged].style.backgroundImage = candyBeingReplaced; // replace dragged candy
+    }
   }
 
   // drops candies when some have been cleared
@@ -155,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip ; validate only if same row
 
       if (rowOfThree.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer != null) {
+        if (timer) {
           score += 3;
           scoreDisplay.innerHTML = score;
         }
@@ -175,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfThree.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer != null) {
+        if (timer) {
           score += 3;
           scoreDisplay.innerHTML = score;
         }
@@ -198,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip
 
       if (rowOfFour.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer != null) {
+        if (timer) {
           score += 4;
           scoreDisplay.innerHTML = score;
         }
@@ -218,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfFour.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer != null) {
+        if (timer) {
           score += 4;
           scoreDisplay.innerHTML = score;
         }
@@ -241,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip
 
       if (rowOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer != null) {
+        if (timer) {
           score += 5;
           scoreDisplay.innerHTML = score;
         }
@@ -261,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer != null) {
+        if (timer) {
           score += 5;
           scoreDisplay.innerHTML = score;
         }

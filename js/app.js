@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       timerDisplay.innerHTML = 'Game Over';
     } else if (timer != null) {
       timeLeft -= 1;
-      timerDisplay.innerHTML = timeLeft;
+      timerDisplay.innerHTML = new Date(timeLeft * 1000).toISOString().substr(14, 5);
     }
   }
   
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip
 
       if (rowOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 4;
+        score += 5;
         scoreDisplay.innerHTML = score;
         rowOfFive.forEach(index => {
           squares[index].style.backgroundImage = '';
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        score += 4;
+        score += 5;
         scoreDisplay.innerHTML = score;
         columnOfFive.forEach(index => {
           squares[index].style.backgroundImage = '';

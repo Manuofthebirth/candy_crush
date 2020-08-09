@@ -1,6 +1,4 @@
-import {squares} from './game.js';
-import {width} from './game.js';
-import {candyColors} from './game.js';
+import {squares, width, candyColors} from './game.js';
 const grid = document.querySelector('.game-grid');
 
 // create Board 

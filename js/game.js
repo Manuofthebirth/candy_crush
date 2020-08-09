@@ -1,4 +1,5 @@
 import * as board from './board.js';
+import * as isRunning from './btn.js';
 export const squares = [];
 export const width = 8;
 export const candyColors = [
@@ -10,65 +11,14 @@ export const candyColors = [
   'url(img/blue.png)'
 ]
 
-document.addEventListener('DOMContentLoaded', () =>{
-  
+document.addEventListener('DOMContentLoaded', () => {
   const scoreDisplay = document.getElementById('score');
   const movesDisplay = document.getElementById('moves');
-  const startBtn = document.querySelector('.start-btn');
-  const timerDisplay = document.getElementById('timer');
-  
   let score = 0;
   let moves = 0;
   let i = 0;
 
-
-
-  // // create Board 
-  // function createBoard() {
-  //   for (let i = 0; i < width * width; i++) {
-  //     const square = document.createElement('div')
-  //     square.classList.add('square');
-  //     square.setAttribute('draggable', true);
-  //     square.setAttribute('id', i); // each square gets an unique id from 0 to 63
-  //     let randomCandy = Math.floor(Math.random() * candyColors.length);
-  //     square.style.backgroundImage = candyColors[randomCandy]
-  //     grid.appendChild(square);
-  //     squares.push(square);
-  //   }
-  // }
-
-
   board.createBoard()
-  // createBoard()
-
-  // countdown
-  let timeLeft = 180;
-
-  function countDown() {
-    if (timeLeft <= 0) {
-      clearInterval(timeLeft = 0)
-      timerDisplay.innerHTML = 'Game Over';
-    } else if (timer) {
-      timeLeft -= 1;
-      timerDisplay.innerHTML = new Date(timeLeft * 1000).toISOString().substr(14, 5); // converts seconds to mm:ss format
-    }
-  }
-  
-  // start/pause button
-  let timer;
-
-  startBtn.addEventListener('click', () => {
-    // pause if timer not null
-    if(timer) {
-      clearInterval(timer);
-      timer = null;
-      startBtn.innerHTML = 'Resume';
-    } else {
-      clearInterval(timer);
-      timer = setInterval(countDown, 1000);
-      startBtn.innerHTML = 'Pause';
-    }
-  })
 
   // Drag the squares (pc) ; inbuilt drag events
   let candyBeingDragged
@@ -84,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   squares.forEach(square => square.addEventListener('drop', dragDrop));
 
   function dragStart() {
-    if (timer) {
+    if (isRunning.timer) {
       candyBeingDragged = this.style.backgroundImage;
       candyIdBeingDragged = parseInt(this.id); // needs to be a number
       console.log(candyBeingDragged); // identify candy being dragged
@@ -94,26 +44,26 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   function dragOver (event) {
     event.preventDefault();
-    if (timer) {
+    if (isRunning.timer) {
       console.log(this.id, 'dragover');
     }
   }
 
   function dragEnter (event) {
     event.preventDefault();
-    if (timer) {
+    if (isRunning.timer) {
       console.log(this.id, 'dragenter');
     }
   }
 
   function dragLeave () {
-    if (timer) {
+    if (isRunning.timer) {
       console.log(this.id, 'dragleave');
     }
   }
 
   function dragEnd () {
-    if (timer) {
+    if (isRunning.timer) {
       console.log(this.id, 'dragend');
       // Moves allowed
       let allowedMoves = [
@@ -137,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
   
   function dragDrop () {
-    if (timer) {
+    if (isRunning.timer) {
       console.log(this.id, 'dragdrop');
       candyBeingReplaced = this.style.backgroundImage;
       candyIdBeingReplaced = parseInt(this.id); // needs to be a number 
@@ -175,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip ; validate only if same row
 
       if (rowOfThree.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer) {
+        if (isRunning.timer) {
           score += 3;
           scoreDisplay.innerHTML = score;
         }
@@ -195,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfThree.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer) {
+        if (isRunning.timer) {
           score += 3;
           scoreDisplay.innerHTML = score;
         }
@@ -218,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip
 
       if (rowOfFour.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer) {
+        if (isRunning.timer) {
           score += 4;
           scoreDisplay.innerHTML = score;
         }
@@ -238,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfFour.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer) {
+        if (isRunning.timer) {
           score += 4;
           scoreDisplay.innerHTML = score;
         }
@@ -261,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       if(notAllowed.includes(i)) continue // skip
 
       if (rowOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer) {
+        if (isRunning.timer) {
           score += 5;
           scoreDisplay.innerHTML = score;
         }
@@ -281,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const isBlank = squares[i].style.backgroundImage === '';
 
       if (columnOfFive.every(index => squares[index].style.backgroundImage === decidedCandy && !isBlank)) {
-        if (timer) {
+        if (isRunning.timer) {
           score += 5;
           scoreDisplay.innerHTML = score;
         }

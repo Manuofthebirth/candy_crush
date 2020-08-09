@@ -1,38 +1,46 @@
+import * as board from './board.js';
+export const squares = [];
+export const width = 8;
+export const candyColors = [
+  'url(img/red.png)',
+  'url(img/yellow.png)',
+  'url(img/orange.png)',
+  'url(img/purple.png)',
+  'url(img/green.png)',
+  'url(img/blue.png)'
+]
+
 document.addEventListener('DOMContentLoaded', () =>{
-  const grid = document.querySelector('.game-grid');
+  
   const scoreDisplay = document.getElementById('score');
   const movesDisplay = document.getElementById('moves');
   const startBtn = document.querySelector('.start-btn');
   const timerDisplay = document.getElementById('timer');
-  const width = 8;
-  const squares = [];
+  
   let score = 0;
   let moves = 0;
+  let i = 0;
 
-  const candyColors = [
-    'url(img/red.png)',
-    'url(img/yellow.png)',
-    'url(img/orange.png)',
-    'url(img/purple.png)',
-    'url(img/green.png)',
-    'url(img/blue.png)'
-  ]
 
-  // create Board 
-  function createBoard() {
-    for (let i = 0; i < width*width; i++) {
-      const square = document.createElement('div')
-      square.classList.add('square');
-      square.setAttribute('draggable', true);
-      square.setAttribute('id', i); // each square gets an unique id from 0 to 63
-      let randomCandy = Math.floor(Math.random() * candyColors.length);
-      square.style.backgroundImage = candyColors[randomCandy]
-      grid.appendChild(square);
-      squares.push(square);
-    }
-  }
-  createBoard()
-  
+
+  // // create Board 
+  // function createBoard() {
+  //   for (let i = 0; i < width * width; i++) {
+  //     const square = document.createElement('div')
+  //     square.classList.add('square');
+  //     square.setAttribute('draggable', true);
+  //     square.setAttribute('id', i); // each square gets an unique id from 0 to 63
+  //     let randomCandy = Math.floor(Math.random() * candyColors.length);
+  //     square.style.backgroundImage = candyColors[randomCandy]
+  //     grid.appendChild(square);
+  //     squares.push(square);
+  //   }
+  // }
+
+
+  board.createBoard()
+  // createBoard()
+
   // countdown
   let timeLeft = 180;
 
@@ -113,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         candyIdBeingDragged - width, // below
         candyIdBeingDragged + 1, // above
         candyIdBeingDragged + width // above
-      ] 
+      ]
       let allowedMove = allowedMoves.includes(candyIdBeingReplaced);
   
       if (candyIdBeingReplaced && allowedMove) { // if it exists and is an allowed move

@@ -1,11 +1,11 @@
-import {squares} from './app.js';
-import {width} from './app.js';
-import {candyColors} from './app.js';
+import {squares} from './game.js';
+import {width} from './game.js';
+import {candyColors} from './game.js';
 const grid = document.querySelector('.game-grid');
 
 // create Board 
 export function createBoard() {
-  for (let i = 0; i < width*width; i++) {
+  for (let i = 0; i < width * width; i++) {
     const square = document.createElement('div')
     square.classList.add('square');
     square.setAttribute('draggable', true);

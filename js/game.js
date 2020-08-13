@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // drops candies when some have been cleared
   function moveDown() {
-    for (i = 0; i < 55; i++) {
+    for (i = 0; i <= 55; i++) {
       if (squares[i + width].style.backgroundImage === '') {
         squares[i + width].style.backgroundImage = squares[i].style.backgroundImage;
         squares[i].style.backgroundImage = '';
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Matching candies (up to 5)
   // row of three
   function checkRowForThree() {
-    for (i = 0; i < 61; i++) { // can't check for #64 or #65; respect limit at #61
+    for (i = 0; i <= 61; i++) { // can't check for #64 or #65; respect limit at #61
       let rowOfThree = [i, i+1, i+2];
       let decidedCandy = squares[i].style.backgroundImage;
       const isBlank = squares[i].style.backgroundImage === '';
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // column of three
   function checkColumnForThree() {
-    for (i = 0; i < 47; i++) { // can't check for #64 or #65; respect limit at #47
+    for (i = 0; i <= 47; i++) { // can't check for #64 or #65; respect limit at #47
       let columnOfThree = [i, i+width, i+width*2];
       let decidedCandy = squares[i].style.backgroundImage;
       const isBlank = squares[i].style.backgroundImage === '';
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // row of four
   function checkRowForFour() {
-    for (i = 0; i < 60; i++) { // can't check for #65 or #66; respect limit at #60
+    for (i = 0; i <= 60; i++) { // can't check for #65 or #66; respect limit at #60
       let rowOfFour = [i, i+1, i+2, i+3];
       let decidedCandy = squares[i].style.backgroundImage;
       const isBlank = squares[i].style.backgroundImage === '';
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // column of four
   function checkColumnForFour() {
-    for (i = 0; i < 39; i++) { // can't check for #71 or #79; respect limit at #39
+    for (i = 0; i <= 39; i++) { // can't check for #71 or #79; respect limit at #39
       let columnOfFour = [i, i+width, i+width*2, i+width*3];
       let decidedCandy = squares[i].style.backgroundImage;
       const isBlank = squares[i].style.backgroundImage === '';
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // row of five
   function checkRowForFive() {
-    for (i = 0; i < 59; i++) { // can't check for #66 or #67; respect limit at #60
+    for (i = 0; i <= 59; i++) { // can't check for #66 or #67; respect limit at #60
       let rowOfFive = [i, i+1, i+2, i+3, i+4];
       let decidedCandy = squares[i].style.backgroundImage;
       const isBlank = squares[i].style.backgroundImage === '';
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // column of five
   function checkColumnForFive() {
-    for (i = 0; i < 31; i++) { // can't check for #71 or #79; respect limit at #39
+    for (i = 0; i <= 31; i++) { // can't check for #71 or #79; respect limit at #39
       let columnOfFive = [i, i+width, i+width*2, i+width*3, i+width*4];
       let decidedCandy = squares[i].style.backgroundImage;
       const isBlank = squares[i].style.backgroundImage === '';

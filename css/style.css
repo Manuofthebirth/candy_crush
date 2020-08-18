@@ -9,7 +9,7 @@ body {
   width: 560px;
   display: flex;
   flex-wrap: wrap;
-  border: inset pink 8px;
+  border: inset 8px;
 }
 
 .square {

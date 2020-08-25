@@ -1,9 +1,9 @@
 .game-grid {
-  height: 560px;
-  width: 560px;
+  border: inset 8px;
   display: flex;
   flex-wrap: wrap;
-  border: inset 8px;
+  height: 560px;
+  width: 560px;
 }
 
 .square {

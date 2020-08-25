@@ -1,7 +1,9 @@
-body {
-  margin: 0px;
-  padding: 0px;
-  display: grid;
+html, body {
+  height: 100%;
+  margin: 0;
+  background-image: linear-gradient(rgba(56, 94, 201, 0.4), rgba(0, 0, 0, 0.3)), url(../img/bg.jpeg);
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
 }
 
 .game-grid {

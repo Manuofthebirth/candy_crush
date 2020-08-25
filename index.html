@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Javascript -->
     <script type="module" src="js/game.js" charset="UTF-8"></script>
     <!-- CSS -->
@@ -10,17 +12,21 @@
     <title>Candy Crush</title>
   </head>
   <body>
-    <div class="display">
-      <h2 class="score-text">Score: <span id="score">0</span></h2>
-      <h2 class="moves-text">Moves: <span id="moves">0</span></h2>
-      <h2 id="timer">03:00</h2>
+    <div class="title">
+      <img class="logo" src="img/logo.png" alt="logo">
     </div>
-    <div class="buttons">
-      <button class="start-btn">Start</button>
-      <button class="sound-btn">Sound</button>
-      <button class="howtoplay-btn">?</button>
+    <div class="container">
+      <div class="display">
+        <h2 id="timer">03:00</h2>
+        <h2 class="score-text">Score: <span id="score">0</span></h2>
+        <h2 class="moves-text">Moves: <span id="moves">0</span></h2>
+        <div class="buttons">
+          <button class="start-btn">Start</button>
+          <button class="sound-btn">Sound</button>
+          <button class="howtoplay-btn">?</button>
+        </div>
+      </div>
+      <div class="game-grid"></div>
     </div>
-    <div class="game-grid"></div>
-
   </body>
 </html>

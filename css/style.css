@@ -1,18 +1,42 @@
-body {
-  margin: 0px;
-  padding: 0px;
-  display: grid;
-}
-
 .game-grid {
-  height: 560px;
-  width: 560px;
+  border: inset 8px;
   display: flex;
   flex-wrap: wrap;
-  border: inset 8px;
+  height: 560px;
+  width: 560px;
 }
 
 .square {
   height: 70px;
   width: 70px;
+}
+
+html, body {
+  background-image: linear-gradient(rgba(56, 94, 201, 0.4), rgba(0, 0, 0, 0.3)), url(../img/bg.jpeg);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  max-height: 100%;
+  justify-content: space-around;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 40px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.title .logo {
+  height: 200px;
+  width: 250px;
 }

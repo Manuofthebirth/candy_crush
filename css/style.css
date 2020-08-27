@@ -20,6 +20,10 @@
   text-shadow: 1px 1px 3px black;
 }
 
+.start-btn:hover {
+  background-image: linear-gradient(#C88A34, #EAC54D, #F5E25B);
+}
+
 @font-face {
   font-family: 'Candice';
   src: local("Candice"), url("../font/candice/CANDY.ttf") format("opentype");
@@ -74,11 +78,11 @@
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   font-size: 40px;
-  font-stretch: expanded;
 }
 
 html, body {
   color: #735C4F;
+  text-shadow: 1px 1px 3px #f3eeee;
   font-family: 'Candice';
   font-size: 20px;
   background-image: url(../img/bg.jpg);

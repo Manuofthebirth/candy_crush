@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Candice';
+  src: local("Candice"), url("../font/candice/CANDY.ttf") format("opentype");
+}
+
 .start-btn {
   align-items: center;
   border: solid 2px #fffefe;
@@ -5,13 +10,23 @@
   justify-content: center;
   margin: 0;
   padding: 10px;
-  background-image: linear-gradient(360deg, #eec0c6 0%, #e58c8a 74%);
+  background-image: linear-gradient(#F5E25B, #EAC54D, #C88A34);
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   width: 100%;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 24px;
-  font-weight: bold;
+  font-family: 'Candice';
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 1px 1px 3px black;
+}
+
+.start-btn:hover {
+  background-image: linear-gradient(#C88A34, #EAC54D, #F5E25B);
+}
+
+@font-face {
+  font-family: 'Candice';
+  src: local("Candice"), url("../font/candice/CANDY.ttf") format("opentype");
 }
 
 .display {
@@ -38,26 +53,13 @@
   width: 560px;
 }
 
-.moves-text {
-  border: solid 2px #F3E6DD;
+.moves-text, .score-text {
+  background-color: #F5BEC7;
+  border: solid 2px #fffefe;
   display: grid;
-  margin-bottom: 50px;
-  margin-top: 0;
+  margin: 0;
   text-align: center;
   width: 100%;
-  border-bottom-right-radius: 12px;
-  background-image: linear-gradient(150deg, #ffdd00, #fbb034);
-}
-
-.score-text {
-  border: solid 2px #F3E6DD;
-  display: grid;
-  margin-bottom: 50px;
-  margin-top: 0;
-  text-align: center;
-  width: 100%;
-  background-image: linear-gradient(200deg, #ffdd00, #fbb034);
-  border-bottom-left-radius: 12px;
 }
 
 .square {
@@ -72,13 +74,17 @@
   justify-content: center;
   margin: 0;
   padding: 10px;
-  border: solid 2px #fffefe;
+  background-color: #F5BEC7;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  background-image: linear-gradient(180deg, #eec0c6 0%, #e58c8a 74%);
+  font-size: 40px;
 }
 
 html, body {
+  color: #735C4F;
+  text-shadow: 1px 1px 3px #f3eeee;
+  font-family: 'Candice';
+  font-size: 20px;
   background-image: url(../img/bg.jpg);
   background-size: 100vw 100vh;
   height: 100%;

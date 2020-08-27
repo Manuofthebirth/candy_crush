@@ -56,3 +56,4 @@ And more..
 * Reload page after game over
 * Add some sound
 * "Sweet/Delicious" messages after a cleared row/column
+* Add more time after X points

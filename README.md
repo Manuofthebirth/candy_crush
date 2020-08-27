@@ -4,7 +4,7 @@ A vanilla JavaScript game inspired by Candy Crush based on [Ania Kubow](https://
 
 The main focus on this project was to improve on what was done in the [Tetris](https://github.com/Manuofthebirth/js-tetris) project (no Bootstrap aplied, createElement() function instead of lots of html divs for the grid construction, separate modules for the JS files..).
 
-<!-- For now, it's only playable on a desktop [here](https://candy-crush-ff37.hostman.site/). -->
+For now, it's only playable on a desktop [here](https://candy-crush-8da7.hostman.site/).
 
 ![Candy Crush](https://github.com/Manuofthebirth/candy_crush/blob/master/img/thumbnail.jpeg)
 

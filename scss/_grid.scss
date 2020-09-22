@@ -1,0 +1,46 @@
+@import 'config';
+
+.display {
+  @include set-border;
+  flex-direction: column;
+  background-image: $white;
+  width: 250px;
+}
+
+.display-text {
+  display: inline-flex;
+}
+
+.game-grid {
+  @include set-border;
+  flex-wrap: wrap;
+  height: 560px;
+  width: 560px;
+}
+
+.moves-text, .score-text  {
+  @include set-displaytext;
+}
+
+// .moves-text {
+//   @include set-displaytext;
+//   border-bottom-right-radius: 12px;
+// }
+
+// .score-text {
+//   @include set-displaytext;
+//   border-bottom-left-radius: 12px;
+// } 
+
+.square {
+  height: 70px;
+  width: 70px;
+}
+
+#timer {
+  @include topbottom-border;
+  background-color: $pink;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  font-size: 40px;
+}

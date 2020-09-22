@@ -1,0 +1,18 @@
+$brown: #732712;
+$pink: #F5BEC7;
+$white: linear-gradient(315deg, #f1dfd1 0%, #f6f0ea 74%);
+$yellow: linear-gradient(#F5E25B, #EAC54D, #C88A34);
+$hover-yellow: linear-gradient( #C88A34, #EAC54D, #F5E25B);
+// $pink-top: linear-gradient(180deg, #eec0c6 0%, #e58c8a 74%);
+// $pink-bottom: linear-gradient(360deg, #eec0c6 0%, #e58c8a 74%);
+// $yellow-left: linear-gradient(200deg, #ffdd00, #fbb034);
+// $yellow-right: linear-gradient(150deg, #ffdd00, #fbb034);
+
+// default font
+@font-face {
+  font-family: 'Candice';
+  src: 
+    local('Candice'),
+    url('../font/candice/CANDY.ttf') 
+    format('opentype');
+}
